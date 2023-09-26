@@ -5,37 +5,73 @@ const itDiv = document.querySelector('.chatcustomchange[data-type="itService"]')
 const travelDiv = document.querySelector('.chatcustomchange[data-type="travel"]');
 const mediclaimDiv = document.querySelector('.chatcustomchange[data-type="mediclaim"]');
 const faqDiv = document.querySelector('.chatcustomchange[data-type="faq"]');
-
+const options1= ['--SELECT--','Leaves', 'medical', 'payroll', 'comp & ben', 'claims', 'ESIC', 'careers' ];
+const optionsHR = ['--SELECT--','Leave balance','Holiday calendar','apply for IJP',' Mediclaim', "refer jobs", "ESIC eligibility", "flexibaske"];
+const optionsForIt = ['--SELECT--','PC Slowness','Blue Screen','Account Unlock','Password Reset','Software Installation','Software Uninstallation','Network Slowness Issue','Others'];
+const optiontravel=['--SELECT--','Domestic Travel Policy','International Travel Policy','Others'];
+const optionsmediclaim=['--SELECT--','My Group Policy Number','Download Group Policy','Intimation for Treatment','Others'];
+const optionsfaq=['--SELECT--','List of FAQ','Others'];
 let fdetails = {};
 let isMuted = false;
 let timer;
+let activeSection = null;
 
 hrPulseDiv.addEventListener('click', function() {
 	clearTimeout(timer); 
     appendUserMessage('HR Pulse');
+     if (activeSection !== null) {
+        removeOptions();
+    }
     askForHrPulse();
+    activeSection = 'hrPulse'; 
 });
 
 itDiv.addEventListener('click', function() {
 	clearTimeout(timer); 
     appendUserMessage('IT SERVICE');
+	if (activeSection !== null) {
+        removeOptions();
+    }
+   askForItService();
+    activeSection = 'itService'; 
 });
 
 travelDiv.addEventListener('click', function() {
 	clearTimeout(timer); 
     appendUserMessage('TRAVEL');
+	if (activeSection !== null) {
+        removeOptions();
+    }
+	askForTravel();
+    activeSection = 'travel'; 
 });
 
 mediclaimDiv.addEventListener('click', function() {
 	clearTimeout(timer); 
     appendUserMessage('MEDICLAIM');
+	if (activeSection !== null) {
+        removeOptions();
+    }
+	askFormediclaim();
+    activeSection = 'travel'; 
 });
 
 faqDiv.addEventListener('click', function() {
 	clearTimeout(timer); 
     appendUserMessage('FAQ');
+	if (activeSection !== null) {
+        removeOptions();
+    }
+	askforfaq();
+    activeSection = 'travel';
 });
 
+function removeOptions() {
+    const botOptions = document.querySelector('.chat-messageOptions.bot-messageOptions');
+    if (botOptions) {
+        botOptions.remove();
+    }
+}
 
 timer = setTimeout(function() {
     appendBotMessage("Is there any concern you are facing,Would you like to raise a ticket? ");
@@ -80,9 +116,30 @@ function collectYes(){
 
 function askForHrPulse() {
     appendBotMessage('Which option do you like to choose? ');
-	appendBotOptions(options);
-	
+	appendBotOptions(optionsHR);
 }
+
+function askForItService(){
+	 appendBotMessage('Which option do you like to choose? ');
+	 appendBotOptions(optionsForIt);
+}
+
+function askForTravel(){
+	 appendBotMessage('Which option do you like to choose? ');
+	 appendBotOptions(optiontravel);
+}
+
+function askFormediclaim(){
+	 appendBotMessage('Which option do you like to choose? ');
+	 appendBotOptions(optionsmediclaim);
+}
+
+function askforfaq(){
+	appendBotMessage('Which option do you like to choose? ');
+	appendBotOptions(optionsfaq);
+}
+
+
 function appendBotOptions(options) {
 	debugger
     const chatMessage = document.createElement('div');
@@ -122,10 +179,6 @@ function appendBotOptions(options) {
     chatInputs.appendChild(chatMessage);
     scrollToBottom();
 }
-
-const options1= ['--SELECT--','Leaves', 'medical', 'payroll', 'comp & ben', 'claims', 'ESIC', 'careers' ];
-
-const options = ['--SELECT--','Leave balance','Holiday calendar','apply for IJP',' Mediclaim', "refer jobs", "ESIC eligibility", "flexibaske"];
 
 function finish() {
 	let HideMydiv = document.getElementById("chatInputs");
