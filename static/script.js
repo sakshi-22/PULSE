@@ -1,6 +1,11 @@
 const chatContent = document.getElementById('chatContent');
 const chatInputs = document.getElementById('chatInputs');
 const hrPulseDiv = document.querySelector('.chatcustomchange[data-type="hrPulse"]');
+const itDiv = document.querySelector('.chatcustomchange[data-type="itService"]');
+const travelDiv = document.querySelector('.chatcustomchange[data-type="travel"]');
+const mediclaimDiv = document.querySelector('.chatcustomchange[data-type="mediclaim"]');
+const faqDiv = document.querySelector('.chatcustomchange[data-type="faq"]');
+
 let fdetails = {};
 let isMuted = false;
 let timer;
@@ -10,6 +15,27 @@ hrPulseDiv.addEventListener('click', function() {
     appendUserMessage('HR Pulse');
     askForHrPulse();
 });
+
+itDiv.addEventListener('click', function() {
+	clearTimeout(timer); 
+    appendUserMessage('IT SERVICE');
+});
+
+travelDiv.addEventListener('click', function() {
+	clearTimeout(timer); 
+    appendUserMessage('TRAVEL');
+});
+
+mediclaimDiv.addEventListener('click', function() {
+	clearTimeout(timer); 
+    appendUserMessage('MEDICLAIM');
+});
+
+faqDiv.addEventListener('click', function() {
+	clearTimeout(timer); 
+    appendUserMessage('FAQ');
+});
+
 
 timer = setTimeout(function() {
     appendBotMessage("Is there any concern you are facing,Would you like to raise a ticket? ");
