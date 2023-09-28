@@ -6,7 +6,7 @@ const travelDiv = document.querySelector('.chatcustomchange[data-type="travel"]'
 const mediclaimDiv = document.querySelector('.chatcustomchange[data-type="mediclaim"]');
 const faqDiv = document.querySelector('.chatcustomchange[data-type="faq"]');
 const options1= ['--SELECT--','Leaves', 'medical', 'payroll', 'comp & ben', 'claims', 'ESIC', 'careers' ];
-const optionsHR = ['--SELECT--','Leave balance','Holiday calendar','apply for IJP',' Mediclaim', "refer jobs", "ESIC eligibility", "flexibaske"];
+const optionsHR = ['--SELECT--','Leave balance','Holiday calendar','RM Change Request','My Current Location','Location Change Request'];
 const optionsForIt = ['--SELECT--','PC Slowness','Blue Screen','Account Unlock','Password Reset','Software Installation','Software Uninstallation','Network Slowness Issue','Others'];
 const optiontravel=['--SELECT--','Domestic Travel Policy','International Travel Policy','Others'];
 const optionsmediclaim=['--SELECT--','My Group Policy Number','Download Group Policy','Intimation for Treatment','Others'];
@@ -75,7 +75,11 @@ function removeOptions() {
 
 timer = setTimeout(function() {
     appendBotMessage("Is there any concern you are facing,Would you like to raise a ticket? ");
+	if (activeSection !== null) {
+        removeOptions();
+    }
 	askForYesOrNo();
+    activeSection = 'travel';
 }, 15000);
 
 function appendUserMessage(message) {
@@ -120,22 +124,22 @@ function askForHrPulse() {
 }
 
 function askForItService(){
-	 appendBotMessage('Which option do you like to choose? ');
+	 appendBotMessage('What issue you are facing?');
 	 appendBotOptions(optionsForIt);
 }
 
 function askForTravel(){
-	 appendBotMessage('Which option do you like to choose? ');
+	 appendBotMessage('Which Travel policy do you want to know about?');
 	 appendBotOptions(optiontravel);
 }
 
 function askFormediclaim(){
-	 appendBotMessage('Which option do you like to choose? ');
+	 appendBotMessage('Which Mediclaim policy do you want to know about?');
 	 appendBotOptions(optionsmediclaim);
 }
 
 function askforfaq(){
-	appendBotMessage('Which option do you like to choose? ');
+	appendBotMessage('Please select your question...');
 	appendBotOptions(optionsfaq);
 }
 
