@@ -53,7 +53,7 @@ mediclaimDiv.addEventListener('click', function() {
         removeOptions();
     }
 	askFormediclaim();
-    activeSection = 'travel'; 
+    activeSection = 'mediclaim'; 
 });
 
 faqDiv.addEventListener('click', function() {
@@ -63,7 +63,7 @@ faqDiv.addEventListener('click', function() {
         removeOptions();
     }
 	askforfaq();
-    activeSection = 'travel';
+    activeSection = 'faq';
 });
 
 function removeOptions() {
@@ -79,7 +79,7 @@ timer = setTimeout(function() {
         removeOptions();
     }
 	askForYesOrNo();
-    activeSection = 'travel';
+    activeSection = 'hrPulse';
 }, 15000);
 
 function appendUserMessage(message) {
@@ -170,6 +170,8 @@ function appendBotOptions(options) {
 			}else if(selectedOption=='Holiday calendar'){
 				appendBotMessage('Redirecting you to the Holiday calendar');
 				window.open('https://pulse.3i-infotech.com/HRIntranet/ViewDocs?t=holidaylist','_blank');
+			}else if(selectedOption=='RM Change Request'||selectedOption=='My Current Location'||selectedOption=='Location Change Request'||selectedOption=='Domestic Travel Policy'||selectedOption=='International Travel Policy'||selectedOption=='PC Slowness'||selectedOption=='Blue Screen'||selectedOption=='My Group Policy Number'||selectedOption=='Others'){
+				appendBotMessage('Coming Soon....');
 			}
         });
 
